@@ -46,12 +46,12 @@ func (m *topicStruct) snapshoot() {
         e := m.receiverChain.Front()
         var index int
         for {
-            snapshoot[index] = e.Value.(*Receiver)
-            index++
-            e = e.Next()
             if e == nil {
                 break
             }
+            snapshoot[index] = e.Value.(*Receiver)
+            index++
+            e = e.Next()
         }
         m.receiverSnapshoot = snapshoot
     }
