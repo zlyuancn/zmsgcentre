@@ -16,7 +16,7 @@ type Receiver struct {
     fn        msgFunction //接收消息的函数
 }
 
-//创建一个接收器(主题名, 接收消息的函数, 优先级(数值小的会先收到消息))
+//创建一个接收器(主题名, 接收器优先级(数值小的会先收到消息), 接收消息的函数)
 func NewReceiver(topicName string, priority int32, fn msgFunction) *Receiver {
     return &Receiver{
         id:        autoReceiverNum.NextNum(),

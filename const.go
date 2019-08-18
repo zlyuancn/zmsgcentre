@@ -8,4 +8,4 @@
 
 package zmsgcentre
 
-const InitTopicStorageSize = 10
+const InitTopicCapacity = 10

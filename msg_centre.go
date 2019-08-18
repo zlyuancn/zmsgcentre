@@ -17,15 +17,14 @@ type topicObjectStorage map[string]*topicStruct
 
 //消息中心
 type MsgCentre struct {
-    rwx    *sync.RWMutex
+    rwx    sync.RWMutex
     topics topicObjectStorage
 }
 
 //创建一个消息中心(初始化消息主题大小)
 func NewMsgCentre() *MsgCentre {
     return &MsgCentre{
-        rwx:    new(sync.RWMutex),
-        topics: make(topicObjectStorage, InitTopicStorageSize),
+        topics: make(topicObjectStorage, InitTopicCapacity),
     }
 }
 
@@ -64,7 +63,7 @@ func (m *MsgCentre) RemoveTopic(topicName string) {
 //移除所有主题, 此操作会同时移除所有的接收器
 func (m *MsgCentre) RemoveAllTopic() {
     m.rwx.Lock()
-    m.topics = make(topicObjectStorage, InitTopicStorageSize)
+    m.topics = make(topicObjectStorage, InitTopicCapacity)
     m.rwx.Unlock()
 }
 
